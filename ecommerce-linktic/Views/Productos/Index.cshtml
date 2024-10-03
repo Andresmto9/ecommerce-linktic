@@ -1,0 +1,29 @@
+﻿@model List<Productos>
+
+@{
+	ViewData["Titulo"] = "Lista de productos";
+}
+
+<div class="row">
+	<div class="col-md-10 offset-md-2 m-auto">
+		<table id="tblProductos">
+			<thead>
+				<tr class="text-center">
+					<th class="text-center">ID</th>
+					<th class="text-center">Imagen</th>
+					<th class="text-center">Producto</th>
+					<th class="text-center">Precio</th>
+					<th class="text-center">Categoría</th>
+					<th class="text-center">Fecha creación</th>
+					<th class="text-center">Acciones</th>
+				</tr>
+			</thead>
+			<tbody id="dataTblProductos">
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@section ScriptsProductos {
+	<script src="~/js/productos.js" asp-append-version="true"></script>
+}

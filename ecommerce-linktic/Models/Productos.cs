@@ -13,7 +13,7 @@ namespace ecommerce_linktic.Models
         public string Descripcion { get; set; }
         public string ImagenProducto { get; set; }
 
-        public Int128 Precio { get; set; }
+        public int Precio { get; set; }
 
         public DateTime FechaCreacion { get; set; }
 

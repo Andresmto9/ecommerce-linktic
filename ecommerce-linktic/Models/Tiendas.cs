@@ -13,7 +13,7 @@ namespace ecommerce_linktic.Models
 
         public string Logo { get; set; }
 
-        public Int16 Estado { get; set; }
+        public int Estado { get; set; }
 
         public DateTime FechaCreacion { get; set; }
 
