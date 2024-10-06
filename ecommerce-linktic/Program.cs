@@ -1,7 +1,26 @@
+using ecommerce_linktic.Data;
+using ecommerce_linktic.Data.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Servicio de prodcutos
+builder.Services.AddScoped<IProductosService, ProductosService>();
+//Servicio de categorias
+builder.Services.AddScoped<ICategoriasService, CategoriasService>();
+//Servicio de tiendas
+builder.Services.AddScoped<ITiendasService, TiendasService>();
+//Servicio de categoria productos
+builder.Services.AddScoped<ICategoriaProductoService, CategoriaProductoService>();
+//Servicio de tienda productos
+builder.Services.AddScoped<ITiendaProductosService, TiendaProductosService>();
+
+builder.Services.AddDbContext<AppDBContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaSQL"));
+});
 
 var app = builder.Build();
 
@@ -23,5 +42,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+AppDbInitializer.Seed(app);
 
 app.Run();
