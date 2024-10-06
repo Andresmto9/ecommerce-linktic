@@ -19,5 +19,7 @@ namespace ecommerce_linktic.Models
         public List<CategoriasProductos> CategoriasProductos { get; set; }
 
         public List<ProductosTiendas> ProductosTiendas { get; set; }
+
+        public List<PedidosProductos> PedidosProductos { get; set; }
     }
 }

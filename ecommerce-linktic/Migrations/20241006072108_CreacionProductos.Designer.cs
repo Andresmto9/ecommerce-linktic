@@ -12,8 +12,8 @@ using ecommerce_linktic.Data;
 namespace ecommerce_linktic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241005230037_ActualizacionProductos")]
-    partial class ActualizacionProductos
+    [Migration("20241006072108_CreacionProductos")]
+    partial class CreacionProductos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,20 +45,72 @@ namespace ecommerce_linktic.Migrations
 
             modelBuilder.Entity("ecommerce_linktic.Models.CategoriasProductos", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("CategoriasId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductosId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("CategoriasId", "ProductosId");
+                    b.HasIndex("CategoriasId");
 
                     b.HasIndex("ProductosId");
 
                     b.ToTable("categoria_producto", (string)null);
+                });
+
+            modelBuilder.Entity("ecommerce_linktic.Models.Pedidos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TotalPrecioPedido")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("pedido", (string)null);
+                });
+
+            modelBuilder.Entity("ecommerce_linktic.Models.PedidosProductos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PedidosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidosId");
+
+                    b.HasIndex("ProductosId");
+
+                    b.ToTable("pedido_producto", (string)null);
                 });
 
             modelBuilder.Entity("ecommerce_linktic.Models.Productos", b =>
@@ -97,24 +149,23 @@ namespace ecommerce_linktic.Migrations
 
             modelBuilder.Entity("ecommerce_linktic.Models.ProductosTiendas", b =>
                 {
-                    b.Property<int>("TiendasId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ProductosId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("TiendasId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TiendaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TiendasId", "ProductosId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductosId");
+
+                    b.HasIndex("TiendasId");
 
                     b.ToTable("tienda_producto", (string)null);
                 });
@@ -153,6 +204,34 @@ namespace ecommerce_linktic.Migrations
                     b.ToTable("tienda", (string)null);
                 });
 
+            modelBuilder.Entity("ecommerce_linktic.Models.Usuarios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CorreoUsuario")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PasswordUsuario")
+                        .IsRequired()
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("usuario", (string)null);
+                });
+
             modelBuilder.Entity("ecommerce_linktic.Models.CategoriasProductos", b =>
                 {
                     b.HasOne("ecommerce_linktic.Models.Categorias", "Categorias")
@@ -168,6 +247,36 @@ namespace ecommerce_linktic.Migrations
                         .IsRequired();
 
                     b.Navigation("Categorias");
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("ecommerce_linktic.Models.Pedidos", b =>
+                {
+                    b.HasOne("ecommerce_linktic.Models.Usuarios", "Usuarios")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("ecommerce_linktic.Models.PedidosProductos", b =>
+                {
+                    b.HasOne("ecommerce_linktic.Models.Pedidos", "Pedidos")
+                        .WithMany("PedidosProductos")
+                        .HasForeignKey("PedidosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ecommerce_linktic.Models.Productos", "Productos")
+                        .WithMany("PedidosProductos")
+                        .HasForeignKey("ProductosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pedidos");
 
                     b.Navigation("Productos");
                 });
@@ -196,9 +305,16 @@ namespace ecommerce_linktic.Migrations
                     b.Navigation("CategoriasProductos");
                 });
 
+            modelBuilder.Entity("ecommerce_linktic.Models.Pedidos", b =>
+                {
+                    b.Navigation("PedidosProductos");
+                });
+
             modelBuilder.Entity("ecommerce_linktic.Models.Productos", b =>
                 {
                     b.Navigation("CategoriasProductos");
+
+                    b.Navigation("PedidosProductos");
 
                     b.Navigation("ProductosTiendas");
                 });
@@ -206,6 +322,11 @@ namespace ecommerce_linktic.Migrations
             modelBuilder.Entity("ecommerce_linktic.Models.Tiendas", b =>
                 {
                     b.Navigation("ProductosTiendas");
+                });
+
+            modelBuilder.Entity("ecommerce_linktic.Models.Usuarios", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

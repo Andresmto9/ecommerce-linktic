@@ -15,6 +15,9 @@ namespace ecommerce_linktic.Data
         public DbSet<Tiendas> Tiendas { get; set; }
         public DbSet<CategoriasProductos> CategoriasProductos { get; set; }
         public DbSet<ProductosTiendas> ProductosTiendas { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Pedidos> Pedidos { get; set; }
+        public DbSet<PedidosProductos> PedidosProductos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,11 +75,6 @@ namespace ecommerce_linktic.Data
             /***********************************************************/
 
             /** Creación de la entidad para la tabla de relacion entre categorias y productos **/
-            modelBuilder.Entity<CategoriasProductos>().HasKey(cp => new
-            { 
-                cp.CategoriasId,
-                cp.ProductosId
-            });
 
             modelBuilder.Entity<CategoriasProductos>().HasOne(c => c.Categorias).WithMany(cp => cp.CategoriasProductos).HasForeignKey(c => c.CategoriasId);
 
@@ -86,17 +84,56 @@ namespace ecommerce_linktic.Data
             /***********************************************************/
 
             /** Creación de la entidad para la tabla de relacion entre tiendas y productos **/
-            modelBuilder.Entity<ProductosTiendas>().HasKey(pt => new
-            {
-                pt.TiendasId,
-                pt.ProductosId
-            });
 
             modelBuilder.Entity<ProductosTiendas>().HasOne(t => t.Tiendas).WithMany(pt => pt.ProductosTiendas).HasForeignKey(t => t.TiendasId);
 
             modelBuilder.Entity<ProductosTiendas>().HasOne(p => p.Productos).WithMany(pt => pt.ProductosTiendas).HasForeignKey(p => p.ProductosId);
 
             modelBuilder.Entity<ProductosTiendas>().ToTable("tienda_producto");
+            /***********************************************************/
+
+            /** Creación de la entidad para la tabla de usuarios **/
+            modelBuilder.Entity<Usuarios>(u =>
+            {
+                u.HasKey(col => col.Id);
+                u.Property(col => col.Id)
+                    .UseIdentityColumn()
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                u.Property(col => col.NombreUsuario).HasMaxLength(200);
+                u.Property(col => col.CorreoUsuario).HasMaxLength(500);
+                u.Property(col => col.PasswordUsuario).HasMaxLength(600);
+            });
+
+            modelBuilder.Entity<Usuarios>().ToTable("usuario");
+            /***********************************************************/
+
+            /** Creación de la entidad para la tabla de pedidos **/
+            modelBuilder.Entity<Pedidos>(p =>
+            {
+                p.HasKey(col => col.Id);
+                p.Property(col => col.Id)
+                    .UseIdentityColumn()
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                p.Property(col => col.TotalPrecioPedido);
+                p.Property(col => col.FechaCreacion);
+            });
+
+            modelBuilder.Entity<Pedidos>().HasOne(u => u.Usuarios).WithMany(p => p.Pedidos).HasForeignKey(p => p.UsuarioId);
+
+            modelBuilder.Entity<Pedidos>().ToTable("pedido");
+            /***********************************************************/
+
+            /** Creación de la entidad para la tabla de relacion entre categorias y productos **/
+
+            modelBuilder.Entity<PedidosProductos>().HasOne(p => p.Productos).WithMany(pp => pp.PedidosProductos).HasForeignKey(p => p.ProductosId);
+
+            modelBuilder.Entity<PedidosProductos>().HasOne(p => p.Pedidos).WithMany(pp => pp.PedidosProductos).HasForeignKey(c => c.PedidosId);
+
+            modelBuilder.Entity<PedidosProductos>().ToTable("pedido_producto");
             /***********************************************************/
         }
     }

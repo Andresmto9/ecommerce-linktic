@@ -3,24 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ecommerce_linktic.Models
 {
-    public class ProductosTiendas
+    public class PedidosProductos
     {
         [Key]
 
         public int Id { get; set; }
-
-        // public List<Productos> ProductoId { get; set; }
-
-        // public List<Tiendas> TiendaId { get; set; }
-
         public int ProductosId { get; set; }
         [ForeignKey("ProductosId")]
 
         public Productos Productos { get; set; }
+        public int PedidosId { get; set; }
+        [ForeignKey("PedidosId")]
 
-        public int TiendasId { get; set; }
-        [ForeignKey("TiendasId")]
-
-        public Tiendas Tiendas { get; set; }
+        public Pedidos Pedidos { get; set; }
     }
 }
