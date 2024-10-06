@@ -34,11 +34,11 @@ namespace ecommerce_linktic.Data
                 tp.Property(col => col.FechaCreacion);
             });
 
-            modelBuilder.Entity<Productos>().ToTable("producto");
-            /***********************************************************/
+			modelBuilder.Entity<Productos>().ToTable("producto");
+			/***********************************************************/
 
-            /** Creación de la entidad para la tabla de categorias **/
-            modelBuilder.Entity<Categorias>(tc =>
+			/** Creación de la entidad para la tabla de categorias **/
+			modelBuilder.Entity<Categorias>(tc =>
             {
                 tc.HasKey(col => col.Id);
                 tc.Property(col => col.Id)

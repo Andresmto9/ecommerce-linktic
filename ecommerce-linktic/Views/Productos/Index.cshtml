@@ -1,10 +1,15 @@
-﻿@model List<Productos>
-
-@{
+﻿@{
 	ViewData["Titulo"] = "Lista de productos";
 }
 
 <div class="row">
+	<div class="col-md-10 offset-md-2 m-auto row">
+		<div class="d-flex align-items-end flex-column">
+			<button type="button" class="btn btn-success" id="btnCreaProd">
+				<i class="bi bi-file-earmark-plus"></i> Crear producto
+			</button>
+		</div>
+	</div>
 	<div class="col-md-10 offset-md-2 m-auto">
 		<table id="tblProductos">
 			<thead>
@@ -13,7 +18,6 @@
 					<th class="text-center">Imagen</th>
 					<th class="text-center">Producto</th>
 					<th class="text-center">Precio</th>
-					<th class="text-center">Categoría</th>
 					<th class="text-center">Fecha creación</th>
 					<th class="text-center">Acciones</th>
 				</tr>
@@ -22,6 +26,54 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="col-12">
+		<div id="modalProductos" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modaTituProductos"></h5>
+						<button type="button" class="bg-transparent close border-0" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<div class="form-group">
+								<label for="nombre-producto" class="col-form-label">Nombre del producto:</label>
+								<input type="text" class="form-control formProd" data-nombre="el nombre" id="nombre-producto">
+							</div>
+							<div class="form-group">
+								<label for="precio-producto" class="col-form-label">Precio del producto:</label>
+								<input type="number" class="form-control formProd" data-nombre="el precio" id="precio-producto">
+							</div>
+							<div class="form-group">
+								<label for="imagen-producto" class="col-form-label">URL imagen del producto:</label>
+								<input type="text" class="form-control formProd" data-nombre="la URL imagen" id="imagen-producto">
+							</div>
+							<div class="form-group" id="contCategoria">
+								<label for="categoria-producto" class="col-form-label">Categoría del producto:</label>
+								<select class="formProd" aria-label="Default select example" data-nombre="la categoría" id="categoria-producto">
+								</select>
+							</div>
+							<div class="form-group" id="contTienda">
+								<label for="tienda-producto" class="col-form-label">Tienda de venta del producto:</label>
+								<select class="formProd" aria-label="Default select example" data-nombre="la tienda" id="tienda-producto">
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="descripcion-producto" class="col-form-label">Descripción del producto:</label>
+								<textarea class="form-control formProd" data-nombre="la descripción" id="descripcion-producto"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" id="contCreaProdModal">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 @section ScriptsProductos {
