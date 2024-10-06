@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ecommerce_linktic.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracionProductos : Migration
+    public partial class ActualizacionProductos : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -7,7 +7,6 @@ namespace ecommerce_linktic.Models
     {
         [Key]
         public int Id { get; set; }
-
         public string NombreProducto { get; set; }
 
         public string Descripcion { get; set; }

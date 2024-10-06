@@ -12,8 +12,8 @@ using ecommerce_linktic.Data;
 namespace ecommerce_linktic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241002061652_Migracion Productos")]
-    partial class MigracionProductos
+    [Migration("20241005230037_ActualizacionProductos")]
+    partial class ActualizacionProductos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
