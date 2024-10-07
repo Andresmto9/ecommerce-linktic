@@ -34,7 +34,7 @@
                             <hr class="my-0" />
                             <div class="card-body">
                                 <div class="d-flex justify-content-end align-items-center pb-2 mb-1">
-                                    <button type="button" class="btn btn-success">
+                                    <button type="button" class="btn btn-success addProduct" data-precio="${value.precio}" data-producto="${value.productoNombre}" data-id="${value.productoId}" data-imagen="${value.imagenProducto}">
                                         <i class="bi bi-cart-plus"></i> Agregar al carrito
                                     </button>
                                 </div>
@@ -52,7 +52,31 @@
             `
         }
 
-        $("#contProductos").html(productos)
+        /**
+         * Funcionalidad para realizar el conteo de productos añadido al carrito de compras
+         */
+        $("#contProductos").html(productos).after(function () {
+            $("#my-tip").empty();
+            let cont = 1;
+            let detaProd = ''
+            let arrProd = localStorage.getItem("arrProd") == null ? [] : JSON.parse(localStorage.getItem("arrProd"));
+            $("#cantProd").html(arrProd.length);
+
+            $(".addProduct").on('click', function () {
+                let arrTemp = {
+                    'id': $(this).data('id'),
+                    'imagen': $(this).data('imagen'),
+                    'producto': $(this).data('producto'),
+                    'precio': $(this).data('precio'),
+                }
+
+                arrProd.push(arrTemp);
+
+                localStorage.setItem("arrProd", JSON.stringify(arrProd));
+
+                $("#cantProd").html(arrProd.length);
+            })
+        })
     })
     .catch((error) => {
         // Muestra el error en consola si falla la consulta de productos
