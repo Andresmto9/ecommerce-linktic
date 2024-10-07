@@ -1,6 +1,6 @@
 # Presentación Prueba Desarrollador Fullstack Linktic
 
-## 1. Clonación del Repositorio para Ser Ejecutado en Visual Studio
+## 1. Clonación del Repositorio para ser Ejecutado en Visual Studio
 
 - Abrimos Visual Studio.
 - Nos dirigimos a la pestaña **Clonar un repositorio**.
@@ -67,3 +67,30 @@ En el apartado de productos, encontraremos una tabla con el listado de productos
 - En la tabla, hay un botón rojo con un icono de un bote de basura.
 - Al hacer clic en el botón, se despliega una alerta preguntando si se desea borrar el producto.
 - Si se selecciona **Sí**, se notificará que el producto fue borrado exitosamente. Si se selecciona **No**, la alerta se cerrará y se visualizará de nuevo la tabla.
+
+## 6. Carrito de Compras
+
+- Para acceder al módulo de inicio, hay un botón llamado "Inicio".
+- Se muestra un listado de todos los productos con información básica.
+- Hay un botón verde "Agregar al carrito" que añade el producto seleccionado en tiempo real.
+
+## 7. Módulo de Pedidos
+
+- Para acceder al módulo de pedidos, clic en el ícono del carrito de compras.
+- Visualizamos un acordeón con dos apartados: pedido actual e histórico de pedidos.
+
+### 7.1 Pedido Actual
+
+- Muestra el listado de productos en el carrito con la opción de borrarlos.
+- Incluye subtotal, IVA y total de la compra.
+- Al realizar la compra, se notifica el registro exitoso y se actualizan los pedidos.
+
+### 7.2 Histórico de Pedidos
+
+- Muestra una tabla con pedidos registrados que incluye:
+- ID del pedido
+- Total del pedido
+- Fecha de creación
+- Estado del pedido
+- Botones para aprobar o rechazar.
+- Se actualiza el estado del pedido al aprobar o rechazar y se muestra "pedido cerrado" para evitar cambios posteriores.
