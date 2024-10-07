@@ -97,4 +97,4 @@ En el apartado de productos, encontraremos una tabla con el listado de productos
 
 ### 8 Estructura base de datos
 
-<span>![Imagen referente a la base de datos usada en la prueba técnica]</span><span>(</span><span>https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png](https://github.com/Andresmto9/ecommerce-linktic/blob/master/basededatoslinktick.PNG</span><span>)</span>
+![Estructura base de datos](https://raw.githubusercontent.com/Andresmto9/ecommerce-linktic/master/basededatoslinktick.PNG)
