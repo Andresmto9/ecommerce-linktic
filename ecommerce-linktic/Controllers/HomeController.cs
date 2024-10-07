@@ -40,6 +40,7 @@ namespace ecommerce_linktic.Controllers
             _context = context;
         }
 
+        /** Funcionalidad para consultar los procutos existentes dentro del sistema y su categoría asociada **/
         [HttpGet]
         public JsonResult GetProdcutosVenta()
         {
@@ -78,5 +79,6 @@ namespace ecommerce_linktic.Controllers
 
             return Json(arrResult);
         }
+        /***************************************************************************************************/
     }
 }
