@@ -20,7 +20,7 @@ namespace ecommerce_linktic.Controllers
         {
             return View();
         }
-
+         /** Funcionalidad para registrar el pedido asociado al carrito de compras **/
         [HttpPost]
 
         public IActionResult SetCompraPedido([FromBody]int[] pedido, int total)
@@ -60,7 +60,9 @@ namespace ecommerce_linktic.Controllers
                 return Json(arrResult);
             }
         }
+        /***************************************************************************************************/
 
+        /** Funcionalidad para consultar todos los pedidos registrados en el sistema **/
         [HttpGet]
         public async Task<JsonResult> GetPedidos()
         {
@@ -81,7 +83,9 @@ namespace ecommerce_linktic.Controllers
                 return Json(arrResult);
             }
         }
+        /***************************************************************************************************/
 
+        /** Funcionadlidad para actualizar el estado del pedido si es aprobado o rechazado **/
         [HttpPost]
 
         public async Task<JsonResult> UpdatePedido(int id, int estado)
@@ -106,5 +110,6 @@ namespace ecommerce_linktic.Controllers
 
             return Json(arrResult);
         }
+        /***************************************************************************************************/
     }
 }
