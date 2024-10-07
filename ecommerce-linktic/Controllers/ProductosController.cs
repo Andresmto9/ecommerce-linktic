@@ -9,13 +9,18 @@ namespace ecommerce_linktic.Controllers
 {
     public class ProductosController : Controller
     {
+		/** Llamado de los servicios para realizar la creación, consulta, acutlización y borrado
+		 * de los diferentes esquemas creado para el sistema
+		**/
         private readonly IProductosService _serviceProducto;
 		private readonly ICategoriasService _servicecCategoria;
 		private readonly ITiendasService _servicecTienda;
 		private readonly ICategoriaProductoService _serviceCateProd;
 		private readonly ITiendaProductosService _serviceTienProd;
+        /***************************************************************************************************/
 
-		public ProductosController(IProductosService serviceProducto, ICategoriasService servicecCategoria, ITiendasService servicecTienda, ICategoriaProductoService serviceCateProd, ITiendaProductosService serviceTienProd)
+		/** Contructor para utualizar los servicios creados en el sistema **/
+        public ProductosController(IProductosService serviceProducto, ICategoriasService servicecCategoria, ITiendasService servicecTienda, ICategoriaProductoService serviceCateProd, ITiendaProductosService serviceTienProd)
         {
 			_serviceProducto = serviceProducto;
 			_servicecCategoria = servicecCategoria;
@@ -23,6 +28,7 @@ namespace ecommerce_linktic.Controllers
 			_serviceCateProd = serviceCateProd;
 			_serviceTienProd = serviceTienProd;
 		}
+        /***************************************************************************************************/
 
         public IActionResult Index()
         {
@@ -76,6 +82,8 @@ namespace ecommerce_linktic.Controllers
 			public string Nombre { get; set; }
 		}
 
+		/** Funcionalidad para registrar un nuevo producto dentro del sistema **/
+
 		[HttpPost]
 		public async Task<JsonResult> CreateProductos([FromBody]Productos producto, int categoria, int tienda)
 		{
@@ -101,8 +109,11 @@ namespace ecommerce_linktic.Controllers
 
 			return Json(arrResult);
 		}
+        /***************************************************************************************************/
 
-		[HttpPost]
+		/** Funcionalidad para actualizar un producto seleccionado **/
+
+        [HttpPost]
 		public async Task<JsonResult> UpdateProductos([FromBody]Productos nuevoProducto, int id)
 		{
 			var arrResult = new object();
@@ -125,8 +136,10 @@ namespace ecommerce_linktic.Controllers
 
 			return Json(arrResult);
 		}
+        /***************************************************************************************************/
 
-		public async Task<JsonResult> DeleteProductos(int id)
+		/** Funcionalidad para borrar un producto seleecionado **/
+        public async Task<JsonResult> DeleteProductos(int id)
 		{
 			var arrResult = new object();
 
@@ -143,5 +156,6 @@ namespace ecommerce_linktic.Controllers
 
 			return Json(arrResult);
 		}
-	}
+        /***************************************************************************************************/
+    }
 }
