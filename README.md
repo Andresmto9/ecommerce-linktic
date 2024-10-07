@@ -94,3 +94,7 @@ En el apartado de productos, encontraremos una tabla con el listado de productos
 - Estado del pedido
 - Botones para aprobar o rechazar.
 - Se actualiza el estado del pedido al aprobar o rechazar y se muestra "pedido cerrado" para evitar cambios posteriores.
+
+### 8 Estructura base de datos
+
+<span>![Imagen referente a la base de datos usada en la prueba técnica]</span><span>(</span><span>https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png](https://github.com/Andresmto9/ecommerce-linktic/blob/master/basededatoslinktick.PNG</span><span>)</span>
