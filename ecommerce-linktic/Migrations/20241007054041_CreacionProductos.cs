@@ -133,7 +133,8 @@ namespace ecommerce_linktic.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalPrecioPedido = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Estado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

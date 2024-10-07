@@ -1,4 +1,9 @@
-﻿//////////////////////////////////////////// SECCIÓN DE LLAMADO DE LAS FUNCIONES ////////////////////////////////////////////
+﻿//////////////////////////////////////////// SECCIÓN PARA DAR FORMATO A LOS PRODUCTOS ACTIVOS ////////////////////////////////////////////
+let arrProd = localStorage.getItem("arrProd") == null ? [] : JSON.parse(localStorage.getItem("arrProd"));
+$("#cantProd").html(arrProd.length);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////// SECCIÓN DE LLAMADO DE LAS FUNCIONES ////////////////////////////////////////////
 
 /** Llamado a la función para la contrucción de la tabla de productos **/
 mostrarTablaProductos()
@@ -289,7 +294,7 @@ function borrarProducto(prodID) {
                         mostrarTablaProductos()
                     }
 
-                });;
+                });
             } else {
                 Swal.fire({
                     title: "¡UN MOMENTO!",
@@ -345,7 +350,7 @@ async function setProductos(producto, categoria, tienda) {
             method: 'post',
             url: `/Productos/CreateProductos?categoria=${categoria}&tienda=${tienda}`,
             dataType: "json",
-            data: JSON.stringify(producto), // Enviando solo el string
+            data: JSON.stringify(producto),
             contentType: 'application/json',
             success: function (data) {
                 resolve(data);

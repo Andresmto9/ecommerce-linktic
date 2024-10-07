@@ -120,6 +120,7 @@ namespace ecommerce_linktic.Data
 
                 p.Property(col => col.TotalPrecioPedido);
                 p.Property(col => col.FechaCreacion);
+                p.Property(col => col.Estado);
             });
 
             modelBuilder.Entity<Pedidos>().HasOne(u => u.Usuarios).WithMany(p => p.Pedidos).HasForeignKey(p => p.UsuarioId);
