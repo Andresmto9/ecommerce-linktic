@@ -17,6 +17,10 @@ builder.Services.AddScoped<ITiendasService, TiendasService>();
 builder.Services.AddScoped<ICategoriaProductoService, CategoriaProductoService>();
 //Servicio de tienda productos
 builder.Services.AddScoped<ITiendaProductosService, TiendaProductosService>();
+//Servicio de pedidos
+builder.Services.AddScoped<IPedidosService, PedidosService>();
+//Servicio de pedidos productos
+builder.Services.AddScoped<IPedidosProductosService, PedidosProductosService>();
 
 builder.Services.AddDbContext<AppDBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaSQL"));

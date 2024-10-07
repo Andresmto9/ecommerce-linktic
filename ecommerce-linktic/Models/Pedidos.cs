@@ -13,6 +13,8 @@ namespace ecommerce_linktic.Models
         [ForeignKey("UsuarioId")]
         public Usuarios Usuarios { get; set; }
         public DateTime FechaCreacion { get; set; }
+
+        public int Estado { get; set; }
         public List<PedidosProductos> PedidosProductos { get; set; }
     }
 }

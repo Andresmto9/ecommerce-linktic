@@ -12,7 +12,7 @@ using ecommerce_linktic.Data;
 namespace ecommerce_linktic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241006072108_CreacionProductos")]
+    [Migration("20241007054041_CreacionProductos")]
     partial class CreacionProductos
     {
         /// <inheritdoc />
@@ -73,6 +73,9 @@ namespace ecommerce_linktic.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");

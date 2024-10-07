@@ -163,6 +163,19 @@ namespace ecommerce_linktic.Data
                     });
                     contexto.SaveChanges();
                 }
+                //Usuario
+                if (!contexto.Usuarios.Any())
+                {
+                    contexto.Usuarios.AddRange(new List<Usuarios>(){
+                        new Usuarios()
+                        {
+                            NombreUsuario = "admin",
+                            CorreoUsuario = "admin@correo.com",
+                            PasswordUsuario = "password",
+                        },
+                    });
+                    contexto.SaveChanges();
+                }
             }
         }
     }
