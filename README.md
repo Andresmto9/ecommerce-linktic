@@ -4,7 +4,7 @@
 
 - Abrimos Visual Studio.
 - Nos dirigimos a la pestaña **Clonar un repositorio**.
-- En el apartado de **Ubicación del repositorio**, colocamos la URL de clonación SSH desde GitHub: `https://github.com/Andresmto9/ecommerce-linktic.git`.
+- En el apartado de **Ubicación del repositorio**, colocamos la URL de clonación HTTPS desde GitHub: `https://github.com/Andresmto9/ecommerce-linktic.git`.
 - Damos al botón **Clonar** y esperamos a que el proyecto sea clonado.
 
 ## 2. Creación de Base de Datos
